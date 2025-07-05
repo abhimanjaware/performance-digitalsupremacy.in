@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaPhoneAlt, FaGlobe, FaEnvelope } from 'react-icons/fa';
 
+
 function Footer() {
   return (
     <footer className="bg-zinc-900 text-zinc-400 w-full px-4 sm:px-8 md:px-16 py-10 relative font-sans">
@@ -11,9 +12,9 @@ function Footer() {
             <h1 className="text-white text-xl sm:text-2xl font-semibold">DIGITAL SUPERMACY</h1>
 
             <div className="flex gap-4 text-lg">
-              <a href="https://facebook.com" className="hover:text-white transition" aria-label="Facebook"><FaFacebookF /></a>
-              <a href="https://instagram.com" className="hover:text-white transition" aria-label="Instagram"><FaInstagram /></a>
-              <a href="https://linkedin.com" className="hover:text-white transition" aria-label="LinkedIn"><FaLinkedinIn /></a>
+              {/* <a href="https://facebook.com" className="hover:text-white transition" aria-label="Facebook"><FaFacebookF /></a> */}
+              <a href="https://www.instagram.com/digitalsupremacy.in/" className="hover:text-white transition" aria-label="Instagram"><FaInstagram /></a>
+              <a href="https://www.linkedin.com/company/digital-supremacy-in/" className="hover:text-white transition" aria-label="LinkedIn"><FaLinkedinIn /></a>
             </div>
           </div>
 
@@ -27,6 +28,10 @@ function Footer() {
               </a>
               <a href="mailto:info@digitalsupermacy.in" className="hover:text-white transition flex items-center gap-2">
                 <FaEnvelope /> info@digitalsupermacy.in
+              </a>
+
+               <a href="" className="hover:text-white transition flex items-center gap-2">
+                <FaEnvelope /> F8A Anupama Heights, Pandit Colony, Gangapur road, Nashik - 422002, MH, India.
               </a>
             </div>
           </div>
@@ -43,9 +48,9 @@ function Footer() {
             <div>
               <h1 className="text-white text-2xl font-semibold mb-6">DIGITAL SUPERMACY</h1>
               <div className="flex gap-4 text-xl">
-                <a href="https://facebook.com" className="hover:text-white transition" aria-label="Facebook"><FaFacebookF /></a>
-                <a href="https://instagram.com" className="hover:text-white transition" aria-label="Instagram"><FaInstagram /></a>
-                <a href="https://linkedin.com" className="hover:text-white transition" aria-label="LinkedIn"><FaLinkedinIn /></a>
+                {/* <a href="https://facebook.com" className="hover:text-white transition" aria-label="Facebook"><FaFacebookF /></a> */}
+                <a href="https://www.instagram.com/digitalsupremacy.in/" className="hover:text-white transition" aria-label="Instagram"><FaInstagram /></a>
+                <a href="https://www.linkedin.com/company/digital-supremacy-in/" className="hover:text-white transition" aria-label="LinkedIn"><FaLinkedinIn /></a>
               </div>
             </div>
 
@@ -73,7 +78,7 @@ function Footer() {
               </a>
             </div>
 
-            <div className="mt-10 max-w-xs">
+            {/* <div className="mt-10 max-w-xs">
               <p className="text-white font-medium mb-2">Subscribe to our newsletter</p>
               <div className="border-b border-zinc-500 flex items-center">
                 <input
@@ -83,15 +88,15 @@ function Footer() {
                 />
                 <span className="text-white text-lg cursor-pointer hover:translate-x-1 transition-transform">→</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
         {/* Vertical Contact Us Button - Desktop Only */}
-        <div className="hidden md:block absolute right-6 bottom-10 transform rotate-90 origin-bottom-right text-sm items-center space-x-2 cursor-pointer group">
+        {/* <div className="hidden md:block absolute right-6 bottom-10 transform rotate-90 origin-bottom-right text-sm items-center space-x-2 cursor-pointer group">
           <div className="w-2 h-2 rounded-full border border-zinc-300 group-hover:bg-white transition" />
           <span className="text-zinc-400 group-hover:text-white transition">contact us</span>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

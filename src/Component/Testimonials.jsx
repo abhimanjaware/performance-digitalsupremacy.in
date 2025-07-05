@@ -1,8 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -43,16 +40,21 @@ const Testimonials = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
 
+  // Debounced screen size check
   useEffect(() => {
+    let resizeTimeout;
     const checkScreenSize = () => {
-      const width = window.innerWidth;
-      setIsMobile(width <= 640);
-      setIsTablet(width > 640 && width <= 1024);
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        const width = window.innerWidth;
+        setIsMobile(width <= 640);
+        setIsTablet(width > 640 && width <= 1024);
+      }, 150);
     };
 
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   const handleNext = () => {
@@ -65,8 +67,9 @@ const Testimonials = () => {
     );
   };
 
+  // GSAP animation with cleanup
   useEffect(() => {
-    if (cardRef.current) {
+    const ctx = gsap.context(() => {
       gsap.fromTo(
         cardRef.current,
         { opacity: 0, y: 30 },
@@ -74,10 +77,12 @@ const Testimonials = () => {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          ease: "power2.out"
+          ease: "power2.out",
         }
       );
-    }
+    }, cardRef);
+
+    return () => ctx.revert();
   }, [activeIndex]);
 
   return (
@@ -114,6 +119,7 @@ const Testimonials = () => {
         <div className="flex space-x-4 sm:space-x-6 order-2 sm:order-1">
           <button
             onClick={handlePrev}
+            aria-label="Previous testimonial"
             className={`${isMobile ? 'px-3 py-1 text-sm' : 'px-4 py-2'} text-black border border-black rounded-full hover:bg-black hover:text-white transition`}
           >
             ← Previous
@@ -121,6 +127,7 @@ const Testimonials = () => {
 
           <button
             onClick={handleNext}
+            aria-label="Next testimonial"
             className={`${isMobile ? 'px-3 py-1 text-sm' : 'px-4 py-2'} text-black border border-black rounded-full hover:bg-black hover:text-white transition`}
           >
             Next →
@@ -132,6 +139,7 @@ const Testimonials = () => {
             <button
               key={idx}
               onClick={() => setActiveIndex(idx)}
+              aria-label={`Go to testimonial ${idx + 1}`}
               className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full border transition-all duration-300 ${
                 activeIndex === idx
                   ? "bg-black border-black scale-110"

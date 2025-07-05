@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const caseStudies = [
   {
     title: "Digital Supremacy – Digital Marketing Agency",
-    image: "https://images.unsplash.com/photo-1556761175-129418cb2dfe?w=800&q=80",
+    image: "https://www.matebiz.com/wp-content/uploads/digital-marketing-agency-2.jpg",
     description: "Custom digital marketing strategies that drive real results through targeted campaigns and cutting-edge insights.",
     pdf: "/5. REDESIGN DIGITAL SUPREMACY.pdf"
   },
@@ -31,7 +31,7 @@ const caseStudies = [
   },
   {
     title: "Trading Monk – Financial Education",
-    image: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1634704784915-aacf363b021f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     description: "Empowering aspiring traders with practical learning modules and expert insights.",
     pdf: "/8.  Redesign trading monk.pdf"
   },
@@ -40,7 +40,21 @@ const caseStudies = [
     image: "https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?w=500&auto=format&fit=crop&q=60",
     description: "120% surge in admissions for coding education through smart digital funnel strategies.",
     pdf: "/03. Redesign CODEHUB.pdf"
-  }
+  },
+  {
+    title: "Healthy Snacks - D2C",
+    image: "https://www.katheats.com/wp-content/uploads/2019/11/Snacks-13.jpg",
+    description: "promoting health and wellness products with a focus on organic growth and customer engagement.",
+    pdf: "Case-Study-Performance-Marketing-Strategy.pdf"
+  },
+
+  {
+    title: "Korean Skincare - D2C",
+    image: "https://plus.unsplash.com/premium_photo-1661404164814-9d3c137097aa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXR5fGVufDB8fDB8fHww",
+    description: "Korean skincare brand that has achieved significant growth through targeted digital marketing strategies.",
+    pdf: "Performance-Marketing-Case-Study.pdf"
+  },
+  
 ];
 
 const CaseStudies = () => {

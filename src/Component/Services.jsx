@@ -229,9 +229,9 @@ function Services() {
                     ))}
                   </ul>
 
-                  <button className={`${isTablet ? 'px-6 py-3 text-base' : 'px-8 py-4 text-lg'} font-bold rounded-full text-white bg-black hover:bg-zinc-800 transition-all duration-300 shadow-inner hover:shadow-lg`}>
+                  {/* <button className={`${isTablet ? 'px-6 py-3 text-base' : 'px-8 py-4 text-lg'} font-bold rounded-full text-white bg-black hover:bg-zinc-800 transition-all duration-300 shadow-inner hover:shadow-lg`}>
                     GET STARTED
-                  </button>
+                  </button> */}
                 </div>
 
                 {/* Right */}

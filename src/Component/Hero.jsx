@@ -92,9 +92,9 @@ function Hero({ openContactForm }) {
             <video
               className="absolute top-0 left-0 w-full h-full rounded-b-lg shadow-lg object-cover"
               controls
-              poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f3f4f6'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' font-family='Arial, sans-serif' font-size='14' fill='%236b7280'%3EVideo Placeholder%3C/text%3E%3C/svg%3E"
+              // poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f3f4f6'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' font-family='Arial, sans-serif' font-size='14' fill='%236b7280'%3EVideo Placeholder%3C/text%3E%3C/svg%3E"
             >
-              <source src="https://some-video-source.com/video.mp4" type="video/mp4" />
+              <source src="src\assets\images\vsl website.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
