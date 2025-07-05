@@ -1,51 +1,56 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+
+// ✅ Import media assets correctly
+import logoImage from '../assets/images/DIGITAL-removebg-preview.png';
+import vslVideo from '../assets/images/vsl website.mp4';
 
 function Hero({ openContactForm }) {
   const logoRef = useRef(null);
-  const companyNameRef = useRef(null);
   const hooklineRef = useRef(null);
+  const companyNameRef = useRef(null); // Not currently used for visible content but retained for animation.
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-    script.onload = () => {
-      const { gsap } = window;
+  useLayoutEffect(() => {
+    if (!logoRef.current || !hooklineRef.current) return;
 
+    const ctx = gsap.context(() => {
       gsap.set(companyNameRef.current, { opacity: 0 });
       gsap.set(hooklineRef.current, { opacity: 0, y: 30 });
 
       const tl = gsap.timeline();
 
-      tl.to({}, { duration: 3.4 })
+      tl.to({}, { duration: 3.4 }) // artificial delay
         .to(logoRef.current, {
           x: -window.innerWidth / 2 + (window.innerWidth < 768 ? 60 : 100),
           y: -window.innerHeight / 2 + (window.innerWidth < 768 ? 60 : 80),
           scale: window.innerWidth < 768 ? 0.4 : 0.5,
           duration: 1.5,
-          ease: 'power2.inOut'
+          ease: 'power2.inOut',
         })
-        .to(companyNameRef.current, {
-          opacity: 1,
-          duration: 0.8,
-          delay: 1,
-          ease: 'power2.out'
-        }, '-=0.5')
-        .to(hooklineRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          delay: -0.5,
-          ease: 'power2.out'
-        }, '-=0.3');
-    };
+        .to(
+          companyNameRef.current,
+          {
+            opacity: 1,
+            duration: 0.8,
+            delay: 1,
+            ease: 'power2.out',
+          },
+          '-=0.5'
+        )
+        .to(
+          hooklineRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: -0.5,
+            ease: 'power2.out',
+          },
+          '-=0.3'
+        );
+    });
 
-    document.head.appendChild(script);
-
-    return () => {
-      if (document.head.contains(script)) {
-        document.head.removeChild(script);
-      }
-    };
+    return () => ctx.revert(); // cleanup on unmount
   }, []);
 
   const handleContactClick = (e) => {
@@ -60,7 +65,7 @@ function Hero({ openContactForm }) {
         <img
           ref={logoRef}
           className="w-32 h-auto sm:w-40 md:w-48 mix-blend-difference"
-          src="src/assets/images/DIGITAL-removebg-preview.png"
+          src={logoImage}
           alt="Logo"
         />
       </div>
@@ -77,7 +82,7 @@ function Hero({ openContactForm }) {
 
         {/* Subheading */}
         <p className="text-[#0F1123] uppercase text-xs sm:text-sm md:text-base tracking-wide max-w-xs sm:max-w-lg md:max-w-xl lg:max-w-2xl mb-8 sm:mb-10 md:mb-12">
-          "We help real estate, education, and finance businesses generate qualified leads and automate the follow-up. Book your free consultation today."
+          We help real estate, education, and finance businesses generate qualified leads and automate the follow-up. Book your free consultation today.
         </p>
 
         {/* Video Section */}
@@ -92,9 +97,9 @@ function Hero({ openContactForm }) {
             <video
               className="absolute top-0 left-0 w-full h-full rounded-b-lg shadow-lg object-cover"
               controls
-              // poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f3f4f6'/%3E%3Ctext x='50' y='50' text-anchor='middle' dy='.3em' font-family='Arial, sans-serif' font-size='14' fill='%236b7280'%3EVideo Placeholder%3C/text%3E%3C/svg%3E"
+              preload="metadata"
             >
-              <source src="src\assets\images\vsl website.mp4" type="video/mp4" />
+              <source src={vslVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

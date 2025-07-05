@@ -1,37 +1,35 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 
+// ✅ Import images correctly for production bundling
+import NEXO from '../assets/images/NEXO.jpg';
+import MONK from '../assets/images/MONK.jpg';
+import JUSTO from '../assets/images/JUSTO.webp';
+import QUALICOM from '../assets/images/QUALICOM.jpg';
+import SURYA from '../assets/images/SURYA.png';
+import CODEHUB from '../assets/images/codehub_logo-removebg-preview.png';
+
 const Clients = () => {
   const marqueeRef = useRef(null);
 
-  const NEXO = 'src/assets/images/NEXO.jpg';
-  const MONK = 'src/assets/images/MONK.jpg';
-  const JUSTO = 'src/assets/images/JUSTO.webp';
-  const QUALICOM = 'src/assets/images/QUALICOM.jpg';
-  const SURYA = 'src/assets/images/SURYA.png';
-  const CODEHUB = 'src/assets/images/codehub_logo-removebg-preview.png';
-
   const clients = [
-    { name: 'Apple', logo: NEXO },
-    { name: 'Google', logo: MONK },
-    { name: 'Microsoft', logo: JUSTO },
-    { name: 'Amazon', logo: QUALICOM },
-    { name: 'Facebook', logo: SURYA },
-    { name: 'Tesla', logo: CODEHUB },
+    { name: 'NEXO', logo: NEXO },
+    { name: 'MONK', logo: MONK },
+    { name: 'JUSTO', logo: JUSTO },
+    { name: 'QUALICOM', logo: QUALICOM },
+    { name: 'SURYA', logo: SURYA },
+    { name: 'CODEHUB', logo: CODEHUB },
   ];
 
   useEffect(() => {
     const animateLoop = (el) => {
-      const duration = 30;
-      const xPercent = -50;
-
       gsap.fromTo(
         el,
         { xPercent: 0 },
         {
-          xPercent,
+          xPercent: -50,
           ease: 'none',
-          duration,
+          duration: 30,
           repeat: -1,
           modifiers: {
             xPercent: gsap.utils.wrap(-50, 0),
@@ -47,12 +45,12 @@ const Clients = () => {
     [...clients, ...clients].map((client, index) => (
       <div
         key={`${client.name}-${index}`}
-        className="relative bg-zinc-800 rounded-xl p-5 flex items-center justify-center min-w-[120px] sm:min-w-[140px] md:min-w-[160px] lg:min-w-[180px] xl:min-w-[200px] pointer-events-none select-none"
+        className="relative bg-zinc-800 rounded-xl p-5 flex items-center justify-center min-w-[120px] sm:min-w-[140px] md:min-w-[160px] lg:min-w-[180px] xl:min-w-[200px]"
       >
         <img
           src={client.logo}
-          alt={client.name}
-          className="w-[70%] h-[70%] object-contain object-center transition-none"
+          alt={`${client.name} logo`}
+          className="w-[70%] h-[70%] object-contain object-center"
           draggable="false"
           style={{ maxWidth: '100px', maxHeight: '100px' }}
         />
@@ -61,7 +59,7 @@ const Clients = () => {
     ));
 
   return (
-    <section className="py-16 sm:py-20 bg-zinc-900 overflow-hidden select-none pointer-events-none">
+    <section className="py-16 sm:py-20 bg-zinc-900 overflow-hidden">
       <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-white mb-12">
           Trusted By Industry Leaders
