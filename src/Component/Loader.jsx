@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-// import logo from "./assets/images/digitasuplogo.png";
+import { gsap } from 'gsap';
+
+// ✅ Proper import for logo
+import logo from '../assets/images/DIGITAL-removebg-preview.png';
 
 function Loader() {
   const [isVisible, setIsVisible] = useState(true);
@@ -8,47 +11,34 @@ function Loader() {
   const backgroundRef = useRef(null);
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
-    script.onload = () => {
-      const { gsap } = window;
-      const tl = gsap.timeline();
+    const tl = gsap.timeline();
 
-      gsap.set(logoRef.current, { opacity: 0, scale: 0.8 });
-      gsap.set(backgroundRef.current, { y: '100%' });
+    gsap.set(logoRef.current, { opacity: 0, scale: 0.8 });
+    gsap.set(backgroundRef.current, { y: '100%' });
 
-      tl
-        .to(logoRef.current, {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: 'power2.out'
-        })
-        .to({}, { duration: 0.5 })
-        .to(backgroundRef.current, {
-          y: '0%',
-          duration: 1.2,
-          ease: 'power2.inOut'
-        })
-        .to(loaderRef.current, {
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.inOut',
-          delay: 0.3,
-          onComplete: () => {
-            setIsVisible(false); // Unmount after animation
-          }
-        });
-    };
-
-    document.head.appendChild(script);
-
-    return () => {
-      document.head.removeChild(script);
-    };
+    tl.to(logoRef.current, {
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      ease: 'power2.out',
+    })
+      .to({}, { duration: 0.5 })
+      .to(backgroundRef.current, {
+        y: '0%',
+        duration: 1.2,
+        ease: 'power2.inOut',
+      })
+      .to(loaderRef.current, {
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.inOut',
+        delay: 0.3,
+        onComplete: () => {
+          setIsVisible(false); // ✅ Hide loader after animation
+        },
+      });
   }, []);
 
-  // 🔒 Don’t render anything if animation is over
   if (!isVisible) return null;
 
   return (
@@ -56,8 +46,8 @@ function Loader() {
       <div className="loader-interface bg-black h-screen w-full flex justify-center items-center relative overflow-hidden">
         <div ref={logoRef} className="logo absolute z-10">
           <img
-          className="w-32 h-auto sm:w-40 md:w-48 mix-blend-difference"
-            src="src\assets\images\DIGITAL-removebg-preview.png"
+            className="w-32 h-auto sm:w-40 md:w-48 object-contain"
+            src={logo}
             alt="Logo"
           />
         </div>
