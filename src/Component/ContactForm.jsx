@@ -12,7 +12,7 @@ const ContactForm = ({ isOpen, onClose }) => {
     message: ''
   });
 
-  // Animation effects
+  // Animation effects and external script loader
   useEffect(() => {
     const handleAnimation = () => {
       if (window.gsap) {
@@ -22,29 +22,28 @@ const ContactForm = ({ isOpen, onClose }) => {
           setIsVisible(true);
           gsap.set([formRef.current, overlayRef.current], { display: 'flex' });
           gsap.to(overlayRef.current, { opacity: 1, duration: 0.3 });
-          gsap.to(formRef.current, { 
-            opacity: 1, 
-            y: 0, 
+          gsap.to(formRef.current, {
+            opacity: 1,
+            y: 0,
             duration: 0.4,
             ease: 'back.out(1.2)'
           });
         } else if (isVisible) {
-          gsap.to(overlayRef.current, { 
-            opacity: 0, 
+          gsap.to(overlayRef.current, {
+            opacity: 0,
             duration: 0.2,
             onComplete: () => {
               gsap.set(overlayRef.current, { display: 'none' });
               setIsVisible(false);
             }
           });
-          gsap.to(formRef.current, { 
-            opacity: 0, 
-            y: 40, 
-            duration: 0.3 
+          gsap.to(formRef.current, {
+            opacity: 0,
+            y: 40,
+            duration: 0.3
           });
         }
       } else {
-        // Fallback animation without GSAP
         if (isOpen) {
           setIsVisible(true);
         } else {
@@ -53,21 +52,29 @@ const ContactForm = ({ isOpen, onClose }) => {
       }
     };
 
-    // Check if GSAP is already loaded
+    // Load GSAP
     if (window.gsap) {
       handleAnimation();
     } else {
-      // Load GSAP
       const script = document.createElement('script');
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
       script.onload = handleAnimation;
-      
+
       if (!document.querySelector('script[src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"]')) {
         document.head.appendChild(script);
       } else {
         handleAnimation();
       }
     }
+
+    // Load LeadConnector script
+    if (!document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]')) {
+      const leadConnectorScript = document.createElement('script');
+      leadConnectorScript.src = 'https://link.msgsndr.com/js/form_embed.js';
+      leadConnectorScript.type = 'text/javascript';
+      document.body.appendChild(leadConnectorScript);
+    }
+
   }, [isOpen, isVisible]);
 
   const handleInputChange = (e) => {
@@ -80,9 +87,7 @@ const ContactForm = ({ isOpen, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
     console.log('Form submitted:', formData);
-    // Reset form
     setFormData({
       name: '',
       email: '',
@@ -111,7 +116,7 @@ const ContactForm = ({ isOpen, onClose }) => {
         className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6 opacity-0 transform translate-y-10"
         style={{ display: isOpen ? 'flex' : 'none' }}
       >
-        <div 
+        <div
           className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden relative"
           onClick={(e) => e.stopPropagation()}
         >
@@ -134,6 +139,7 @@ const ContactForm = ({ isOpen, onClose }) => {
             </div>
           </div>
 
+          {/* Form Fields */}
           <div className="p-4 sm:p-6 space-y-4 bg-white">
             {/* Name Field */}
             <div>
@@ -218,6 +224,17 @@ const ContactForm = ({ isOpen, onClose }) => {
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:border-transparent resize-none"
                 placeholder="Tell us about your lead generation challenges..."
+              />
+            </div>
+
+            {/* Embedded Scheduler */}
+            <div className="pt-4">
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/booking/hol1OPARDUvDMseP5kEc"
+                style={{ width: '100%', border: 'none', overflow: 'hidden' }}
+                scrolling="no"
+                id="hol1OPARDUvDMseP5kEc_1752159189555"
+                title="LeadConnector Booking Widget"
               />
             </div>
 
