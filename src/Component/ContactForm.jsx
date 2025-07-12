@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-
 const ContactForm = ({ isOpen, onClose }) => {
   const formRef = useRef(null);
   const overlayRef = useRef(null);

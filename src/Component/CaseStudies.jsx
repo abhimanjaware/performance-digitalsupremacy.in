@@ -45,14 +45,14 @@ const caseStudies = [
     title: "Healthy Snacks - D2C",
     image: "https://www.katheats.com/wp-content/uploads/2019/11/Snacks-13.jpg",
     description: "promoting health and wellness products with a focus on organic growth and customer engagement.",
-    pdf: "Case-Study-Performance-Marketing-Strategy.pdf"
+    pdf: "Performance-Marketing-Case-Study.pdf"
   },
 
   {
     title: "Korean Skincare - D2C",
     image: "https://plus.unsplash.com/premium_photo-1661404164814-9d3c137097aa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YmVhdXR5fGVufDB8fDB8fHww",
     description: "Korean skincare brand that has achieved significant growth through targeted digital marketing strategies.",
-    pdf: "Performance-Marketing-Case-Study.pdf"
+    pdf: "Case-Study-Performance-Marketing-Strategy.pdf"
   },
   
 ];
